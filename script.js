@@ -1,23 +1,7 @@
-let usersdatabase = [
-    {
-        name: "danish",
-        email: "danish123@gmail.com",
-        password: "12345"
-    },
-    {
-        name: "sheharyar",
-        email: "sheharyar123@gmail.com",
-        password: "12345"
-    }
-]
+let usersdatabase = []
 
 
 
-localStorage.setItem("userslist", JSON.stringify(usersdatabase));
-
-let data = localStorage.getItem("userslist");
-console.log(data);
-usersdatabase = JSON.parse(data);
 
 
 // login function 
@@ -43,10 +27,12 @@ function loginfnc() {
 
 
 // SignUp function
+
+let UserInfo = {}
 function signupfnc() {
-    let name = document.getElementById('signupName');
-    let email = document.getElementById('signupEmail');
-    let password = document.getElementById('signupPassword');
+    let name = document.getElementById('signupName').value;
+    let email = document.getElementById('signupEmail').value;
+    let password = document.getElementById('signupPassword').value;
     let userExist = false;
     for (let i = 0; i < usersdatabase.length; i++) {
         if (email.value === usersdatabase[i].email) {
@@ -56,16 +42,21 @@ function signupfnc() {
             userExist = true;
 
         }
-        // if(userExist === false){
-        //     let newUser = {
-        //         name, email,password
-        //     }
-        //     usersdatabase.push(newUser)
-        // }
-
     }
-
-
+    let newUser = {
+        name, email, password
+    }
+    usersdatabase.push(newUser)
+    console.log("User Details saved");
+    console.log(usersdatabase)  
 }
 
 
+console.log(usersdatabase)
+
+
+localStorage.setItem("userslist", JSON.stringify(usersdatabase));
+
+let data = localStorage.getItem("userslist");
+console.log(data);
+usersdatabase = JSON.parse(data);
