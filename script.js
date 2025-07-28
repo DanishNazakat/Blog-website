@@ -1,9 +1,9 @@
 
 let usersdatabase = JSON.parse(localStorage.getItem('userInfo')) || [];
 // user Name 
-let userNameNo = usersdatabase.length-1;
+let userNameNo = usersdatabase.length - 1;
 console.log(userNameNo)
-let userName = document.getElementById('userName').innerText=usersdatabase[userNameNo].name;
+let userName = document.getElementById('userName').innerText = usersdatabase[userNameNo].name;
 
 
 // SignUp function
@@ -31,7 +31,7 @@ function signupfnc() {
         localStorage.setItem('userInfo', JSON.stringify(usersdatabase));
         window.open("home.html");
     }
-} 
+}
 
 
 
@@ -61,7 +61,7 @@ function loginfnc() {
         email.value = "";
         password.value = "";
     }
-    
+
     document.getElementById("userName").innerText = "Welcome, ";
 }
 
@@ -70,18 +70,18 @@ function loginfnc() {
 
 
 // blog section
-function opendiv(){
+function opendiv() {
     let closeicon = document.getElementById('closeicon');
     let blogform = document.getElementById('blogform');
-    blogform.style.display="flex";
+    blogform.style.display = "flex";
     document.body.style.overflow = "hidden";
-    
+
     console.log("Event Fired")
 }
-function closediv(){
+function closediv() {
     let closeicon = document.getElementById('closeicon');
     let blogform = document.getElementById('blogform');
-    blogform.style.display="none";
+    blogform.style.display = "none";
     document.body.style.overflow = "scroll";
 }
 
@@ -89,21 +89,75 @@ function closediv(){
 // blog Content
 
 let userblogs = JSON.parse(localStorage.getItem("blog")) || [];
-function createBlog(){
+function createBlog() {
     let blogTittle = document.getElementById('blogTittleinp').value;
     let authorName = document.getElementById('authorNameinp').value;
     let blogContent = document.getElementById('blogContent').value;
+    let file = document.getElementById('file');
+    console.log(file)
+    let imgUrl = URL.createObjectURL(file.files[0]);
+    let blogimg = document.createElement('div');
+    blogimg.setAttribute("class", "blogimg");
+    blogimg.style.backgroundImage = `url(${imgUrl})`;
+
     let userblog = {
         blogTittle,
         authorName,
-        blogContent
+        blogContent,
+        imgUrl
     }
     userblogs.push(userblog);
-    localStorage.setItem("blog",JSON.stringify(userblogs));
-    let blogtittleout = document.getElementById('blogtittle').innerText= blogTittle;
-    let blogContentout = document.getElementById('blogdescription').innerText = blogContent;
-    let authorNameout = document.getElementById('authorName').innerText = authorName;
-    blogform.style.display="none";
+    localStorage.setItem("blog", JSON.stringify(userblogs));
 
+    // let blogtittleout = document.getElementById('blogtittle').innerText = blogTittle;
+    // let blogContentout = document.getElementById('blogdescription')
+    //     .innerText = blogContent;
+    // let authorNameout = document.getElementById('authorName').innerText = authorName;
+    blogform.style.display = "none";
+    document.body.style.overflowY = "scroll";
+
+    let line = document.createElement('hr');
+
+    let main = document.querySelector(".main");
+    let blogSeciton = document.createElement('div');
+    blogSeciton.setAttribute("class", "blogSeciton");
+
+
+    let blogtittle = document.createElement('h1');
+    blogtittle.setAttribute("id", "blogtittle");
+    blogtittle.innerText = blogTittle;
+
+
+    let blogdescription = document.createElement("p");
+    blogdescription.setAttribute("id", "blogdescription")
+    blogdescription.innerText = blogContent;
+
+    let authorDetails = document.createElement('div');
+    authorDetails.setAttribute("class", "authorDetails")
+
+    let authorNamen = document.createElement('div');
+    authorNamen.setAttribute("id", "authorName");
+    authorNamen.innerText = authorName;
+
+
+    let puslishDate = document.createElement('div');
+    puslishDate.setAttribute("id", "puslishDate");
+    let D = new Date();
+    let day = D.getDate();
+    let month = D.getMonth();
+    let year = D.getFullYear();
+    puslishDate.innerText = `${day} - ${month + 1} - ${year}`;
+    // blogSeciton.innerText = "Asad";
+    // blogSeciton.style.color = "Black";
+    main.append(blogSeciton);
+    console.log(blogSeciton);
+    blogSeciton.append(blogtittle);
+    blogSeciton.append(blogdescription);
+    blogSeciton.append(authorDetails);
+    authorDetails.append(authorNamen);
+    authorDetails.append(puslishDate)
+    blogSeciton.append(blogimg)
+    blogSeciton.append(line)
+    // main.appendChild(blogdescription)
 }
-
+// let blogSeciton = document.querySelector('.blogSeciton');
