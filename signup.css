@@ -162,7 +162,7 @@
 
 
 
-@media (min-width: 300px) and (max-width:800px) {
+@media (min-width: 0px) and (max-width:800px) {
    .singinsec{
     width: 100%;
     border-radius: 16px;
@@ -177,7 +177,16 @@
     .signinInner{
         margin: 0px;
     }
+    .signinInner h1{
+        font-size: 2.3em;
+        margin-bottom: 15px;
+    }
+    .singininput input{
+        height: 30px;
+    }
       .forgotp{
         display: block;
+        font-size: 18px;
+        /* margin-bottom: 0%; */
     }
 }
