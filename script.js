@@ -25,9 +25,8 @@ function signupfnc() {
     }
     if (userExist === false) {
 
-        for (let i = 0; i < email.length; i++) {
+        
 
-            console.log(email.length + "=" + i)
             let newUser = {
                 signupFirstName,
                 signupLastName,
@@ -40,7 +39,7 @@ function signupfnc() {
             console.log(email.length + "=" + i)
 
 
-        }
+        
     }
 }
 
